@@ -249,3 +249,56 @@ public class TennisCoach implements Coach {
 * 그런데 첫번째, 두번째 글자가 모두 대문자라면 위의 규칙을 적용하지 않는다
 
 ---
+
+### lecture 74. Using @Qualifier with Constructors
+
+Qualifier는 생성자의 인자에서 사용하는 방법도 있다
+```java
+@Component
+public class TennisCoach implements Coach {
+
+    private FortuneService fortuneService;
+
+    // define a default constructor
+    public TennisCoach() {
+        System.out.println(">> TennisCoach: inside default constructor");
+    }
+    
+    @Autowired
+    public TennisCoach(@Qualifier("randomFortuneService") FortuneService theFortuneService) {
+
+        System.out.println(">> TennisCoach: inside constructor using @autowired and @qualifier");
+        
+        fortuneService = theFortuneService;
+    }
+    
+		// ...
+}
+```
+
+---
+
+### lecture 75. How to inject properties file using Java annotations
+
+자바 어노테이션을 사용해서 프로퍼티 파일을 주입하는 방법
+```txt
+foo.email=myeasycoach@luv2code.com
+foo.team=Silly Java Coders
+```
+* src/sport.properties 파일을 생성하고 위의 코드를 작성한다
+
+```xml
+<!-- <context:component-scan .../> -->
+<context:property-placeholder location="classpath:sport.properties"/>
+```
+* 위 코드를 작성해서 프로퍼티 파일을 불러온다
+* 주의할점 context:component-scan 보다 뒤에 작성해야만 한다
+
+```java
+@Value("${foo.email}")
+private String email;
+    
+@Value("${foo.team}")
+private String team;
+```
+* @Value 어노테이션을 사용해 변수에 주입해준다
