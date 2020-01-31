@@ -11,7 +11,7 @@ DI의 정의
   - 자동차는 이 부품들에 의존한다
   - 따라서 자동차를 만들기 위해서는 이 부품들을 자동차에 주입해야 한다
 * 프로그래밍
-  - 외부 엔티티에 의존성 생성을 위임
+  - 외부 엔티티에 의존성을 생성하는 책임을 위임한다
 
 앞서 만들었던 Coach 예제
 * 코치 객체는 스프링이 제공하는 여러 설정들을 사용한다
@@ -76,7 +76,7 @@ Step3. Configure the dependency injection in Spring config file
 ```
 * 빈에 의존성을 등록한다
   - BaseballCoach는 HappyFortuneService을 주입받으므로 이를 설정해줘야한다
-  - <constructor-arg ref="..." />로 생성자에서 의존성을 주입받는 것을 설정하고있다
+  - constructor-arg ref="..." 로 생성자에서 의존성을 주입받는 것을 설정하고있다
 
 ---
 
@@ -270,11 +270,13 @@ public class CricketCoach implements Coach {
     class="com.luv2code.springdemo.HappyFortuneService">
 </bean>
 
+<!--
 <bean id="myCoach"
     class="com.luv2code.springdemo.TrackCoach">
     <constructor-arg ref="myFortuneService" />
 </bean>
-    
+-->    
+
 <bean id="myCricketCoach"
     class="com.luv2code.springdemo.CricketCoach">        
   <property name="fortuneService" ref="myFortuneService"/>

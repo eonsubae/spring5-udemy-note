@@ -210,4 +210,4 @@ public class MySpringMvcDispatcherServletInitializer extends AbstractAnnotationC
  
 }
 ```
-* Video 403 - Spring MVC All Java Config에 위 코드의 작동 원리가 나와있다
+* Video 376 - Spring MVC All Java Config에 위 코드의 작동 원리가 나와있다
